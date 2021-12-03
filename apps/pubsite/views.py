@@ -6,9 +6,5 @@ from django.http import HttpResponse
 
 
 def index(req):
-    return HttpResponse("Hello world. You're at the pubsite")
-
-
-def login(req):
-    context = {"login"}
-    return render(req, "", context)
+    context = {}
+    return render(req, "index.html", context)

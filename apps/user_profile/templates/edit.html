@@ -1,0 +1,30 @@
+{% extends 'common/_base.html' %}
+{% block content %}
+    Edit your profile, {{ user.username }}!!
+    <form action="{% url 'profile-edit' requested_user.username %}">
+        {% csrf_token %}
+        {% if error %}
+            <strong>Error!</strong>
+            <p>
+                {{ error }}
+            </p>
+        {% endif %}
+        {% if message %}
+            <strong>Message</strong>
+            {% for msg in message %}
+                <p>
+                    {{ msg }}
+                </p>
+            {% endfor %}
+        {% endif %}
+        {{ form.event_group_1 }}
+        {{ form.event_group_2 }}
+        {{ form.year_in_school }}
+        {{ form.degrees }}
+        <p>
+            <button type="submit">
+                Save
+            </div>
+        </p>
+    </form>
+{% endblock %}

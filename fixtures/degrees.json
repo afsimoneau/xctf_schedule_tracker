@@ -1,7 +1,11 @@
 [
     {
-        "model": "",
+        "model": "user_profile.DegreeAndCert",
         "pk": 1,
-        "fields": {}
+        "fields": {
+            "area_of_study":"Computer Science",
+            "level":"BS",
+            "short_code":"CS"
+        }
     }
 ]

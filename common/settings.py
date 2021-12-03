@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "apps.pubsite",
     "apps.scheduler",
     "apps.user_profile",
+    "common",
 ]
 
 MIDDLEWARE = [
@@ -123,4 +124,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-DEFAULT_AUTO_FIELD='django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = "profile/"
+LOGOUT_REDIRECT_URL = "/"

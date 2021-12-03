@@ -1,15 +1,14 @@
 <html lang="en">
     <head>
-        {% load satic %}
+        {% load static %}
         <title>
-            {% block title %}{% endblock %}
+            {% block page_title %}WPI XC/TF Scheduler{% endblock %}
         </title>
         <meta name="description" content="WPI XC/TF schedule coordinator">
     </meta>
 </head>
 <body>
     <main>
-        {% block main %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 </body>
