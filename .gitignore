@@ -137,5 +137,3 @@ GitHub.sublime-settings
 .history
 
 # Manually ignored files
-
-fixtures/reset.json

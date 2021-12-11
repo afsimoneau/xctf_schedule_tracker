@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "apps.scheduler",
     "apps.user_profile",
     "common",
+    "tailwind",
+    "theme",
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "profile/"
 LOGOUT_REDIRECT_URL = "/"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+TAILWIND_APP_NAME = "theme"

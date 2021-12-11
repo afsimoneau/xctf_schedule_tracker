@@ -17,10 +17,16 @@
                 </p>
             {% endfor %}
         {% endif %}
-        {{ form.event_group_1 }}
-        {{ form.event_group_2 }}
-        {{ form.year_in_school }}
-        {{ form.degrees }}
+        {% if form %}
+            {{ form.event_group_1 }}
+            {{ form.event_group_2 }}
+            {{ form.year_in_school }}
+            {{ form.degrees }}
+        {% else %}
+            <p>
+                ALERT: not rendered
+            </p>
+        {% endif %}
         <p>
             <button type="submit">
                 Save
