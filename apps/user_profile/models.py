@@ -7,18 +7,22 @@ from django.contrib.auth.models import User
 
 class DegreeAndCert(models.Model):
     area_of_study = models.CharField(max_length=50)
-    LEVELS = [
-        ("BA", "Bachelor"),
-        ("MI", "Minor"),
-        ("CE", "Certificate"),
-        ("MA", "Master"),
-        ("PH", "PhD"),
-    ]
-    level = models.CharField(max_length=2, choices=LEVELS)
+
+    class Levels(models.TextChoices):
+        BACHELOR = "BA", ("Bachelor")
+        MINOR = "MI", ("Minor")
+        CERTIFICATE = "CE", ("Certificate")
+        MASTER = "MA", ("Master")
+        PHD = "PH", ("PhD")
+
+    level = models.CharField(max_length=2, choices=Levels.choices)
     short_code = models.CharField(max_length=5)
 
     def __str__(self) -> str:
         return f"{self.short_code} - {self.level}"
+
+    class Meta:
+        unique_together = ("area_of_study", "short_code", "level")
 
 
 class Profile(models.Model):
@@ -63,7 +67,7 @@ class Profile(models.Model):
     degrees = models.ManyToManyField(DegreeAndCert)
 
     def __str__(self) -> str:
-        return f"{self.user.get_full_name()}"
+        return f"{self.user.get_full_name()} - {self.year_in_school}"
 
     class Meta:
         unique_together = [["event_group_1", "event_group_2"]]

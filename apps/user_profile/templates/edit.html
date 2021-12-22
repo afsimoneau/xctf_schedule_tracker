@@ -1,13 +1,18 @@
 {% extends 'common/_base.html' %}
 {% block content %}
-    Edit your profile, {{ user.username }}!!
-    <form action="{% url 'profile-edit' requested_user.username %}">
+    Edit your profile, {{ user.username }}
+    <br>
+    <a href="/profile/">Go back</a>
+    <form action="{% url 'profile-edit-submit' requested_user.username %}"
+          method="post">
         {% csrf_token %}
         {% if error %}
             <strong>Error!</strong>
-            <p>
-                {{ error }}
-            </p>
+            {% for err in error %}
+                <p>
+                    {{ err }}
+                </p>
+            {% endfor %}
         {% endif %}
         {% if message %}
             <strong>Message</strong>
@@ -21,16 +26,20 @@
             {{ form.event_group_1 }}
             {{ form.event_group_2 }}
             {{ form.year_in_school }}
+            <button type="submit">Save</button>
+            <p>
+                <h3>Degrees:</h3>
+            </p>
             {{ form.degrees }}
+            <p>
+                Don't see your degree? Add it
+                <a href="/profile/degrees">here</a>
+                :
+            </p>
         {% else %}
             <p>
                 ALERT: not rendered
             </p>
         {% endif %}
-        <p>
-            <button type="submit">
-                Save
-            </div>
-        </p>
     </form>
 {% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'common/_base.html' %}
+{% block content %}
+    {% if error %}
+        <strong>Error!</strong>
+        {% for err in error %}
+            <p>
+                {{ err }}
+            </p>
+        {% endfor %}
+    {% endif %}
+    {% if message %}
+        <strong>Message</strong>
+        {% for msg in message %}
+            <p>
+                {{ msg }}
+            </p>
+        {% endfor %}
+    {% endif %}
+    <h1>Current Degrees and Certificates:</h1>
+    {% if degrees.BA %}
+        <h3>
+            Bachelors
+        </h3
+        {% for deg in degrees.BA %}
+            <p>
+                {{ deg }}
+            </p>
+        {% endfor %}
+    {% endif %}
+    {% if degrees.MA %}
+        <h3>
+            Masters
+        </h3
+        {% for deg in degrees.MA %}
+            <p>
+                {{ deg }}
+            </p>
+        {% endfor %}
+    {% endif %}
+    {% if degrees.PH %}
+        <h3>PhDs:</h3>
+        {% for deg in degrees.PH %}
+            <p>
+                {{ deg }}
+            </p>
+        {% endfor %}
+    {% endif %}
+    {% if degrees.MI %}
+        <h3>Minors:</h3>
+        {% for deg in degrees.MI %}
+            <p>
+                {{ deg }}
+            </p>
+        {% endfor %}
+    {% endif %}
+    {% if degrees.CE %}
+        <h3>Certificates:</h3>
+        {% for deg in degrees.CE %}
+            <p>
+                {{ deg }}
+            </p>
+        {% endfor %}
+    {% endif %}
+    <br>
+    <a href="/profile/">Go back</a>
+    <form action="{% url 'degrees-submit' %}" method="post">
+        {% csrf_token %}
+        {% if form %}
+            {{ form.area_of_study }}
+            {{ form.level }}
+            {{ form.short_code }}
+            <button type="submit">Save</button>
+        {% else %}
+            <p>
+                ALERT: not rendered
+            </p>
+        {% endif %}
+    </form>
+{% endblock %}
