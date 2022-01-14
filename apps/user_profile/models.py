@@ -35,6 +35,14 @@ class Profile(models.Model):
 
     """
 
+    class Gender(models.TextChoices):
+        MALE = "M", ("Male")
+        FEMALE = "F", ("Female")
+
+    gender = models.CharField(
+        max_length=1, choices=Gender.choices, null=False, default=Gender.MALE
+    )
+
     class EventGroups(models.TextChoices):
         DISTANCE = "DST", ("Distance")
         JUMPS = "JMP", ("Jumps")

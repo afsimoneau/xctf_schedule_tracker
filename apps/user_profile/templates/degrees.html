@@ -1,21 +1,5 @@
 {% extends 'common/_base.html' %}
 {% block content %}
-    {% if error %}
-        <strong>Error!</strong>
-        {% for err in error %}
-            <p>
-                {{ err }}
-            </p>
-        {% endfor %}
-    {% endif %}
-    {% if message %}
-        <strong>Message</strong>
-        {% for msg in message %}
-            <p>
-                {{ msg }}
-            </p>
-        {% endfor %}
-    {% endif %}
     <h1>Current Degrees and Certificates:</h1>
     {% if degrees.BA %}
         <h3>
@@ -63,7 +47,7 @@
     {% endif %}
     <br>
     <a href="/profile/">Go back</a>
-    <form action="{% url 'degrees-submit' %}" method="post">
+    <form action="{% url 'degrees' %}" method="post">
         {% csrf_token %}
         {% if form %}
             {{ form.area_of_study }}

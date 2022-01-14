@@ -9,34 +9,107 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('auth', '0012_alter_user_first_name_max_length'),
+        ("auth", "0012_alter_user_first_name_max_length"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='DegreeAndCert',
+            name="DegreeAndCert",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('area_of_study', models.CharField(max_length=50)),
-                ('level', models.CharField(choices=[('BA', 'Bachelor'), ('MI', 'Minor'), ('CE', 'Certificate'), ('MA', 'Master'), ('PH', 'PhD')], max_length=2)),
-                ('short_code', models.CharField(max_length=5)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("area_of_study", models.CharField(max_length=50)),
+                (
+                    "level",
+                    models.CharField(
+                        choices=[
+                            ("BA", "Bachelor"),
+                            ("MI", "Minor"),
+                            ("CE", "Certificate"),
+                            ("MA", "Master"),
+                            ("PH", "PhD"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
+                ("short_code", models.CharField(max_length=5)),
             ],
             options={
-                'unique_together': {('area_of_study', 'short_code', 'level')},
+                "unique_together": {("area_of_study", "short_code", "level")},
             },
         ),
         migrations.CreateModel(
-            name='Profile',
+            name="Profile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('event_group_1', models.CharField(choices=[('DST', 'Distance'), ('JMP', 'Jumps'), ('MLT', 'Multi'), ('SPR', 'Sprints'), ('THR', 'Throws')], default='DST', max_length=3)),
-                ('event_group_2', models.CharField(blank=True, choices=[('DST', 'Distance'), ('JMP', 'Jumps'), ('MLT', 'Multi'), ('SPR', 'Sprints'), ('THR', 'Throws')], max_length=3)),
-                ('year_in_school', models.CharField(blank=True, choices=[('FR', 'Freshman'), ('SO', 'Sophomore'), ('JR', 'Junior'), ('SR', 'Senior'), ('GR', 'Graduate')], default='FR', max_length=2)),
-                ('degrees', models.ManyToManyField(to='user_profile.DegreeAndCert')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='auth.user')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "event_group_1",
+                    models.CharField(
+                        choices=[
+                            ("DST", "Distance"),
+                            ("JMP", "Jumps"),
+                            ("MLT", "Multi"),
+                            ("SPR", "Sprints"),
+                            ("THR", "Throws"),
+                        ],
+                        default="DST",
+                        max_length=3,
+                    ),
+                ),
+                (
+                    "event_group_2",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("DST", "Distance"),
+                            ("JMP", "Jumps"),
+                            ("MLT", "Multi"),
+                            ("SPR", "Sprints"),
+                            ("THR", "Throws"),
+                        ],
+                        max_length=3,
+                    ),
+                ),
+                (
+                    "year_in_school",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("FR", "Freshman"),
+                            ("SO", "Sophomore"),
+                            ("JR", "Junior"),
+                            ("SR", "Senior"),
+                            ("GR", "Graduate"),
+                        ],
+                        default="FR",
+                        max_length=2,
+                    ),
+                ),
+                ("degrees", models.ManyToManyField(to="user_profile.DegreeAndCert")),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE, to="auth.user"
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('event_group_1', 'event_group_2')},
+                "unique_together": {("event_group_1", "event_group_2")},
             },
         ),
     ]

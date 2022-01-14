@@ -3,25 +3,9 @@
     Edit your profile, {{ user.username }}
     <br>
     <a href="/profile/">Go back</a>
-    <form action="{% url 'profile-edit-submit' requested_user.username %}"
+    <form action="{% url 'profile-edit' requested_user.username %}"
           method="post">
         {% csrf_token %}
-        {% if error %}
-            <strong>Error!</strong>
-            {% for err in error %}
-                <p>
-                    {{ err }}
-                </p>
-            {% endfor %}
-        {% endif %}
-        {% if message %}
-            <strong>Message</strong>
-            {% for msg in message %}
-                <p>
-                    {{ msg }}
-                </p>
-            {% endfor %}
-        {% endif %}
         {% if form %}
             {{ form.event_group_1 }}
             {{ form.event_group_2 }}

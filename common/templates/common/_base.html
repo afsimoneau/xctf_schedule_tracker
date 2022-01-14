@@ -13,6 +13,39 @@
 </head>
 <body class="bg-gray-50 font-sans">
     <main class="container">
+        {% block nav_head %}
+            {% if user.is_authenticated %}
+                {% block nav_head_auth_content %}
+                    <p>
+                        <a href="{% url 'profile-index' %}">Profile</a>
+                        <a href="{% url 'schedule-index' %}">Schedule</a>
+                        <a href="{% url 'logout' %}">Log Out</a>
+                    </p>
+                {% endblock %}
+            {% endif %}
+        {% endblock %}
+        {% block alerts %}
+            {% if error %}
+                <div class="bg-gray-200 border-2 border-black">
+                    <strong>Error!</strong>
+                    {% for err in error %}
+                        <p class="bg-red-500 text-white">
+                            {{ err }}
+                        </p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if message %}
+                <div class="bg-gray-200 border-2 border-black">
+                    <strong>Message</strong>
+                    {% for msg in message %}
+                        <p class="bg-yellow-500 text-black">
+                            {{ msg }}
+                        </p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endblock %}
         {% block content %}{% endblock %}
     </main>
 </body>
