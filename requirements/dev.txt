@@ -2,4 +2,4 @@
 
 # Dev requirements
 black==21.12b0
-djlint==0.6.8
+djlint==1.11.0
