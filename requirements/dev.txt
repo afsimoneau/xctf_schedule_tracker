@@ -1,5 +1,5 @@
 -r base.txt
 
 # Dev requirements
-black==21.12b0
+black==23.1a1
 djlint==0.6.8
